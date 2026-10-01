@@ -1,0 +1,27 @@
+class Solution {
+    public int dayOfYear(String date) {
+        String[] a = date.split("-");
+
+        int year = Integer.parseInt(a[0]);
+        int month = Integer.parseInt(a[1]);
+        int day = Integer.parseInt(a[2]);
+
+        int[] days = {31,28,31,30,31,30,31,31,30,31,30,31};
+
+        int total = day;
+
+        for (int i = 0; i < month - 1; i++) {
+            total += days[i];
+        }
+
+        if (month > 2 && isLeap(year))
+            total++;
+
+        return total;
+    }
+
+    private boolean isLeap(int year) {
+        return year % 400 == 0 ||
+               (year % 4 == 0 && year % 100 != 0);
+    }
+}
